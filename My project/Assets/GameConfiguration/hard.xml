@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameConfigurationData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <GameButtons>6</GameButtons>
+  <PointsPerStep>3</PointsPerStep>
+  <GameTime>30</GameTime>
+  <RepeatMode>false</RepeatMode>
+  <GameSpeed>1.5</GameSpeed>
+</GameConfigurationData>
