@@ -9,6 +9,8 @@ public class ScoreIncrementorController : MonoBehaviour
     private int scorePerStep = 1;
     private ScoreIncrementorView scoreIncrementorView;
 
+    public int Score => currentScore;
+
     private void Awake()
     {
         scoreIncrementorView = GetComponent<ScoreIncrementorView>();
