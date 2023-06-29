@@ -12,4 +12,5 @@ public class GameplayEvents : MonoSingleton<GameplayEvents>
     public Action SystemPlayedAllSteps; // Whenever the system played all the steps, this event will be invoked.
     public Action PlayerMadeBadSequence; // Whenever the player made a bad sequence, this event will be invoked.
     public Action PlayerFinishedSequenceSuccessfully; // Whenever the player made a bad sequence, this event will be invoked.
+    public Action TimeFinished; // Whenever the time is finished, this event will be invoked.
 }

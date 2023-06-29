@@ -31,8 +31,12 @@ public class TimerController : MonoBehaviour
         if (currentTime > 0f && startCounting)
         {
             currentTime -= Time.deltaTime;
-            if (currentTime < 0f)
+            if (currentTime <= 0f) 
+            {
                 currentTime = 0f;
+                StopTimer();
+                GameplayEvents.Instance.TimeFinished?.Invoke();
+            }
 
             timerView.UpdateTimeText(currentTime);
         }

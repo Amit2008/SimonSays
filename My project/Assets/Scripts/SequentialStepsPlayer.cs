@@ -10,12 +10,14 @@ public class SequentialStepsPlayer : MonoBehaviour
     private void OnEnable()
     {
         GameplayEvents.Instance.NewStepMade += PlaySteps;
+        GameplayEvents.Instance.TimeFinished += StopSequence;
     }
     private void OnDisable()
     {
         if (GameplayEvents.Instance == null) return;
 
         GameplayEvents.Instance.NewStepMade -= PlaySteps;
+        GameplayEvents.Instance.TimeFinished -= StopSequence;
     }
 
     public void SetStepsPlayer(bool repeatMode, float gameSpeedModifier) 
@@ -27,6 +29,11 @@ public class SequentialStepsPlayer : MonoBehaviour
     private void PlaySteps(List<ButtonType> steps)
     {
         StartCoroutine(PlayStepsCoroutine(steps));
+    }
+
+    private void StopSequence() 
+    {
+        StopCoroutine(PlayStepsCoroutine(new List<ButtonType>()));
     }
 
     private IEnumerator PlayStepsCoroutine(List<ButtonType> steps)

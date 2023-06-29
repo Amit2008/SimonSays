@@ -21,6 +21,7 @@ public class ButtonController : MonoBehaviour
 
         GameplayEvents.Instance.SystemStartPlayingSteps += DisableButton;
         GameplayEvents.Instance.PlayerMadeBadSequence += DisableButton;
+        GameplayEvents.Instance.TimeFinished += DisableButton;
         GameplayEvents.Instance.SystemPlayedAllSteps += EnableButton;
         GameplayEvents.Instance.SystemPlayedStep += PlayButton;
     }
@@ -33,6 +34,7 @@ public class ButtonController : MonoBehaviour
         
         GameplayEvents.Instance.SystemStartPlayingSteps -= DisableButton;
         GameplayEvents.Instance.PlayerMadeBadSequence -= DisableButton;
+        GameplayEvents.Instance.TimeFinished -= DisableButton;
         GameplayEvents.Instance.SystemPlayedAllSteps -= EnableButton;
         GameplayEvents.Instance.SystemPlayedStep -= PlayButton;
     }
