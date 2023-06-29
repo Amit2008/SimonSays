@@ -19,7 +19,7 @@ public class ButtonView : MonoBehaviour
     {
         MousePressed?.Invoke();
     }
-    private void OnMouseUpAsButton() 
+    private void OnMouseUp() 
     {
         MouseReleased?.Invoke();
     }
