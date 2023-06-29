@@ -5,6 +5,7 @@ using UnityEngine;
 public class SequentialStepsPlayer : MonoBehaviour 
 {
     [SerializeField] private float delayBetweenPlays;
+    [SerializeField] private float microDelay = 0.1f;
     private bool repeatMode = true;
     private void OnEnable()
     {
@@ -36,7 +37,7 @@ public class SequentialStepsPlayer : MonoBehaviour
             foreach (var step in steps)
             {
                 GameplayEvents.Instance.SystemPlayedStep?.Invoke(step, delayBetweenPlays);
-                yield return new WaitForSeconds(delayBetweenPlays);
+                yield return new WaitForSeconds(delayBetweenPlays + microDelay);
             }
         }
         else 

@@ -675,6 +675,37 @@ Transform:
   m_Father: {fileID: 836875205}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1452211048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1452211049}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1452211049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452211048}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2116502897}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1458592856
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,8 +908,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1562888990}
+  - component: {fileID: 1562888991}
   m_Layer: 0
-  m_Name: SoundManager
+  m_Name: SoundMaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -899,6 +931,20 @@ Transform:
   m_Father: {fileID: 2059543591}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1562888991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562888989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4fd7fc25f5e504c94de9cf6dd5eed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPlayerPrefab: {fileID: 2243159158154200079, guid: 47f2425fe51a0a940997ab1abd7c00f9, type: 3}
+  soundsParent: {fileID: 1452211049}
 --- !u!1 &1591373491
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,6 +1005,7 @@ MonoBehaviour:
   buttonGroupCreator: {fileID: 1628278937}
   newStepMaker: {fileID: 1907746817}
   sequentialStepsPlayer: {fileID: 1907746818}
+  soundManager: {fileID: 1562888991}
 --- !u!1 &1628278935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,6 +1272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayBetweenPlays: 1
+  microDelay: 0.1
 --- !u!1 &2059543590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,6 +1339,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1031779698}
+  - {fileID: 1452211049}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
