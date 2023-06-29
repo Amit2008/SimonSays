@@ -19,6 +19,7 @@ public class GameModel : MonoBehaviour
 
     private void OnDisable()
     {
+        if (GameplayEvents.Instance == null) return;
         GameplayEvents.Instance.DataLoaded -= SetDataInjector;
     }
     private void SetDataInjector(GameConfigurationData data)

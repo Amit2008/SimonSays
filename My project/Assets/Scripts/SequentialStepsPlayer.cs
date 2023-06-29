@@ -5,7 +5,7 @@ using UnityEngine;
 public class SequentialStepsPlayer : MonoBehaviour 
 {
     [SerializeField] private float delayBetweenPlays;
-    [SerializeField] private float microDelay = 0.1f;
+    [SerializeField] private float microDelay = 0.1f; // added in case of the same button is pressed twice in a row
     private bool repeatMode = true;
     private void OnEnable()
     {
@@ -13,6 +13,8 @@ public class SequentialStepsPlayer : MonoBehaviour
     }
     private void OnDisable()
     {
+        if (GameplayEvents.Instance == null) return;
+
         GameplayEvents.Instance.NewStepMade -= PlaySteps;
     }
 
@@ -30,6 +32,7 @@ public class SequentialStepsPlayer : MonoBehaviour
     private IEnumerator PlayStepsCoroutine(List<ButtonType> steps)
     {
         GameplayHelper.isAutoPlay = true;
+        yield return new WaitForSeconds(delayBetweenPlays);
         Debug.Log("PlayStepsCoroutine: Auto play sequence started!");
         GameplayEvents.Instance.SystemStartPlayingSteps?.Invoke();
         if (repeatMode)

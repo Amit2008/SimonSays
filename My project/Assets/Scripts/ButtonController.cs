@@ -20,15 +20,19 @@ public class ButtonController : MonoBehaviour
         buttonView.MouseReleased += OnButtonReleased;
 
         GameplayEvents.Instance.SystemStartPlayingSteps += DisableButton;
+        GameplayEvents.Instance.PlayerMadeBadSequence += DisableButton;
         GameplayEvents.Instance.SystemPlayedAllSteps += EnableButton;
         GameplayEvents.Instance.SystemPlayedStep += PlayButton;
     }
     private void OnDisable()
     {
+        if (buttonView == null || GameplayEvents.Instance == null) return;
+
         buttonView.MousePressed -= OnButtonPressed;
         buttonView.MouseReleased -= OnButtonReleased;
         
         GameplayEvents.Instance.SystemStartPlayingSteps -= DisableButton;
+        GameplayEvents.Instance.PlayerMadeBadSequence -= DisableButton;
         GameplayEvents.Instance.SystemPlayedAllSteps -= EnableButton;
         GameplayEvents.Instance.SystemPlayedStep -= PlayButton;
     }

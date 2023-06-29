@@ -10,4 +10,6 @@ public class GameplayEvents : MonoSingleton<GameplayEvents>
     public Action SystemStartPlayingSteps; // Whenever the system starts playing the steps, this event will be invoked.
     public Action<ButtonType, float> SystemPlayedStep; // Whenever a step is played by the system, this event will be invoked.
     public Action SystemPlayedAllSteps; // Whenever the system played all the steps, this event will be invoked.
+    public Action PlayerMadeBadSequence; // Whenever the player made a bad sequence, this event will be invoked.
+    public Action PlayerFinishedSequenceSuccessfully; // Whenever the player made a bad sequence, this event will be invoked.
 }

@@ -13,6 +13,8 @@ public class SoundPlayerCreator : MonoBehaviour
     }
     private void OnDisable()
     {
+        if (GameplayEvents.Instance == null) return;
+
         GameplayEvents.Instance.ButtonPressed -= PlayButtonSound;
     }
     public void SetSoundManager(float gameSpeed) 

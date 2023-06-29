@@ -31,7 +31,7 @@ public class GameConfigurationCreator : EditorWindow
         pointsPerStep = EditorGUILayout.IntField("Points Per Step", pointsPerStep);
         gameTime = EditorGUILayout.FloatField("Game Time", gameTime);
         repeatMode = EditorGUILayout.Toggle("Repeat Mode", repeatMode);
-        gameSpeed = EditorGUILayout.FloatField("Game Speed Bonus", gameSpeed);
+        gameSpeed = EditorGUILayout.FloatField("Game Speed", gameSpeed);
         fileName = EditorGUILayout.TextField("File Name", fileName);
 
         EditorGUILayout.Space();

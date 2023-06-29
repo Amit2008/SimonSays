@@ -8,10 +8,14 @@ public class NewStepMaker : MonoBehaviour
     private void OnEnable()
     {
         GameplayEvents.Instance.StartButtonClicked += StartGame;
+        GameplayEvents.Instance.PlayerFinishedSequenceSuccessfully += MakeNewStep;
     }
     private void OnDisable()
     {
+        if (GameplayEvents.Instance == null) return;
+
         GameplayEvents.Instance.StartButtonClicked -= StartGame;
+        GameplayEvents.Instance.PlayerFinishedSequenceSuccessfully -= MakeNewStep;
     }
     private void Update()
     {
