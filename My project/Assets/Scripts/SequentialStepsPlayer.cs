@@ -38,7 +38,7 @@ public class SequentialStepsPlayer : MonoBehaviour
 
     private IEnumerator PlayStepsCoroutine(List<ButtonType> steps)
     {
-        GameplayHelper.isAutoPlay = true;
+        GameplayHelper.IsAutoPlay = true;
         yield return new WaitForSeconds(delayBetweenPlays);
         Debug.Log("PlayStepsCoroutine: Auto play sequence started!");
         GameplayEvents.Instance.SystemStartPlayingSteps?.Invoke();
@@ -57,6 +57,6 @@ public class SequentialStepsPlayer : MonoBehaviour
 
         Debug.Log("PlayStepsCoroutine: Auto play sequence ended");
         GameplayEvents.Instance.SystemPlayedAllSteps?.Invoke();
-        GameplayHelper.isAutoPlay = false;
+        GameplayHelper.IsAutoPlay = false;
     }
 }

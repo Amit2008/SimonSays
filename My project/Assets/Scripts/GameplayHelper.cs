@@ -1,4 +1,5 @@
 ﻿public static class GameplayHelper
 {
-    public static bool isAutoPlay = true;
+    public static bool IsAutoPlay = true;
+    public static string FileName = "";
 }

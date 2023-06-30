@@ -6,6 +6,8 @@ public class GameConfigurationLoader : MonoBehaviour
     [SerializeField] private string fileName;
     private void Start()
     {
+        fileName = GameplayHelper.FileName;
+
         if (string.IsNullOrEmpty(fileName)) return;
 
         string fullUrl =  Application.persistentDataPath + "/" + fileName + (useJSON ? ".json" : ".xml");

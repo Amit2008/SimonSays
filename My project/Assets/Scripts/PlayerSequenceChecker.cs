@@ -31,7 +31,7 @@ public class PlayerSequenceChecker : MonoBehaviour
 
     private void CheckPlayerSequence(ButtonModel buttonModel) 
     {
-        if (GameplayHelper.isAutoPlay) return;
+        if (GameplayHelper.IsAutoPlay) return;
 
         ButtonType buttonType = buttonModel.ButtonType;
         if (latestSequence[currentSequenceIndex] != buttonType) 
