@@ -13,5 +13,4 @@ public class GameplayEvents : MonoSingleton<GameplayEvents>
     public Action PlayerMadeBadSequence; // Whenever the player made a bad sequence, this event will be invoked.
     public Action PlayerFinishedSequenceSuccessfully; // Whenever the player made a bad sequence, this event will be invoked.
     public Action TimeFinished; // Whenever the time is finished, this event will be invoked.
-    public Action GoToMainMenu; // Whenever the player wants to go to the main menu, this event will be invoked.
 }

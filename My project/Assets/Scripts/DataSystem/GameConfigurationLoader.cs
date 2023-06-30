@@ -8,7 +8,7 @@ public class GameConfigurationLoader : MonoBehaviour
     {
         if (string.IsNullOrEmpty(fileName)) return;
 
-        string fullUrl = "Assets/GameConfiguration/" + fileName + (useJSON ? ".json" : ".xml");
+        string fullUrl =  Application.persistentDataPath + "/" + fileName + (useJSON ? ".json" : ".xml");
         // Create a factory instance based on the chosen configuration type
         ConfigurationFactory factory;
 

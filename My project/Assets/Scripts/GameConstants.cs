@@ -9,4 +9,6 @@ public static class GameConstants
     public const string PlayerWonText = "Game Won!";
     public const string PlayerLostText = "Game Lost";
     public const string ScoreText = "Your score is:";
+    public const string MainMenuSceneName = "Main";
+    public const string GameplaySceneName = "Gameplay";
 }

@@ -494,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea57f049ca0c08f4a88bc7c0038b046f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useJSON: 1
+  useJSON: 0
   fileName: easy
 --- !u!1 &408870132
 GameObject:
@@ -1208,7 +1208,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &719364352
 RectTransform:
@@ -2049,6 +2049,7 @@ MonoBehaviour:
   popupObj: {fileID: 574874407}
   titleText: {fileID: 630025958}
   scoreText: {fileID: 265443621}
+  goToMainMenu: {fileID: 284048592}
 --- !u!114 &1607978208
 MonoBehaviour:
   m_ObjectHideFlags: 0

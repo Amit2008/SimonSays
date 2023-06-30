@@ -49,6 +49,8 @@ public class EndGameController : MonoBehaviour
     private void GoToMainMenu() 
     {
         endGameview.SetMainMenuButtonInteractionState(false);
-        GameplayEvents.Instance.GoToMainMenu?.Invoke();
+
+        if (GeneralEvents.Instance != null)
+            GeneralEvents.Instance.GoToMainMenu?.Invoke(gameObject.scene.name);
     }
 }

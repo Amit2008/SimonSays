@@ -12,7 +12,7 @@ public class EndGameView : MonoBehaviour
     [SerializeField] private GameObject popupObj;
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private Button goTomainMenu;
+    [SerializeField] private Button goToMainMenu;
 
     public void SetEndGameView(int score, bool playerWon) 
     {
@@ -28,6 +28,6 @@ public class EndGameView : MonoBehaviour
 
     public void SetMainMenuButtonInteractionState(bool state) 
     {
-        goTomainMenu.interactable = state;
+        goToMainMenu.interactable = state;
     }
 }

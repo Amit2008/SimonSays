@@ -80,7 +80,7 @@ public class GameConfigurationCreator : EditorWindow
         };
 
         string jsonData = JsonConvert.SerializeObject(configData, Formatting.Indented);
-        string filePath = $"Assets/GameConfiguration/{fileName}.json";
+        string filePath =  Application.persistentDataPath + $"/{fileName}.json";
         File.WriteAllText(filePath, jsonData);
 
         Debug.Log($"JSON Configuration created: {filePath}");
@@ -100,12 +100,12 @@ public class GameConfigurationCreator : EditorWindow
         };
 
         XmlSerializer serializer = new XmlSerializer(typeof(GameConfigurationData));
-        using (StreamWriter streamWriter = new StreamWriter($"Assets/GameConfiguration/{fileName}.xml"))
+        using (StreamWriter streamWriter = new StreamWriter(Application.persistentDataPath + $"/{fileName}.xml"))
         {
             serializer.Serialize(streamWriter, configData);
         }
 
-        Debug.Log($"XML Configuration created: Assets/GameConfiguration/{fileName}.xml");
+        Debug.Log($"XML Configuration created: {Application.persistentDataPath}/{fileName}.xml");
 
         AssetDatabase.Refresh();
     }
