@@ -15,10 +15,14 @@ public class LevelButtonController : MonoBehaviour
     private void OnEnable()
     {
         levelButtonView.LevelButtonClicked += SetLevelNameToLoad;
+        MainMenuEvents.Instance.LevelNameSet += DisableInteractivity;
     }
     private void OnDisable()
     {
+        if (MainMenuEvents.Instance == null || levelButtonView == null) return;
+
         levelButtonView.LevelButtonClicked -= SetLevelNameToLoad;
+        MainMenuEvents.Instance.LevelNameSet -= DisableInteractivity;
     }
 
     public void SetButton(string levelName) 
@@ -31,5 +35,10 @@ public class LevelButtonController : MonoBehaviour
     {
         GameplayHelper.FileName = levelName;
         MainMenuEvents.Instance.LevelNameSet?.Invoke();
+    }
+
+    private void DisableInteractivity() 
+    {
+        levelButtonView.SetInteractionState(false);
     }
 }

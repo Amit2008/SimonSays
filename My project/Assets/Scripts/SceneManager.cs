@@ -24,12 +24,16 @@ public class SceneManager : MonoBehaviour
     {
         GeneralEvents.Instance.LevelReadyToBeLoaded += LoadGameplayScene;
         GeneralEvents.Instance.GoToMainMenu += LoadMainMenuScene;
+        GeneralEvents.Instance.GoToGameplay += LoadGameplayScene;
     }
 
     private void OnDisable()
     {
+        if (GeneralEvents.Instance == null) return;
+
         GeneralEvents.Instance.LevelReadyToBeLoaded -= LoadGameplayScene;
         GeneralEvents.Instance.GoToMainMenu -= LoadMainMenuScene;
+        GeneralEvents.Instance.GoToGameplay -= LoadGameplayScene;
     }
 
     private void Start()

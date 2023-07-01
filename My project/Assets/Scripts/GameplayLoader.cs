@@ -8,6 +8,8 @@ public class GameplayLoader : MonoBehaviour
     }
     private void OnDisable()
     {
+        if (MainMenuEvents.Instance == null) return;
+
         MainMenuEvents.Instance.LevelNameSet -= LoadLevel;
     }
 
