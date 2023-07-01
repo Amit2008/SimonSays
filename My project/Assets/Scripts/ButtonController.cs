@@ -9,6 +9,7 @@ public class ButtonController : MonoBehaviour
     private ButtonView buttonView;
     private ButtonModel buttonModel;
     private CircleCollider2D circleCollider2D;
+    private bool permaColliderDisable = false;
     private void Awake()
     {
         CasheButtonView();
@@ -20,8 +21,8 @@ public class ButtonController : MonoBehaviour
         buttonView.MouseReleased += OnButtonReleased;
 
         GameplayEvents.Instance.SystemStartPlayingSteps += DisableButton;
-        GameplayEvents.Instance.PlayerMadeBadSequence += DisableButton;
-        GameplayEvents.Instance.TimeFinished += DisableButton;
+        GameplayEvents.Instance.PlayerMadeBadSequence += DisableColliderPermanently;
+        GameplayEvents.Instance.TimeFinished += DisableColliderPermanently;
         GameplayEvents.Instance.SystemPlayedAllSteps += EnableButton;
         GameplayEvents.Instance.SystemPlayedStep += PlayButton;
     }
@@ -33,8 +34,8 @@ public class ButtonController : MonoBehaviour
         buttonView.MouseReleased -= OnButtonReleased;
         
         GameplayEvents.Instance.SystemStartPlayingSteps -= DisableButton;
-        GameplayEvents.Instance.PlayerMadeBadSequence -= DisableButton;
-        GameplayEvents.Instance.TimeFinished -= DisableButton;
+        GameplayEvents.Instance.PlayerMadeBadSequence -= DisableColliderPermanently;
+        GameplayEvents.Instance.TimeFinished -= DisableColliderPermanently;
         GameplayEvents.Instance.SystemPlayedAllSteps -= EnableButton;
         GameplayEvents.Instance.SystemPlayedStep -= PlayButton;
     }
@@ -68,13 +69,22 @@ public class ButtonController : MonoBehaviour
         buttonView.SetButtonSprite(buttonReleasedSprite);
     }
 
+    private void DisableColliderPermanently() 
+    {
+        permaColliderDisable = true;
+        DisableButton();
+    }
+
     private void DisableButton() 
     {
         ChangeButtonColliderInteractionState(false);
     }
     private void EnableButton()  
     {
-        ChangeButtonColliderInteractionState(true);
+        if (!permaColliderDisable) 
+        {
+            ChangeButtonColliderInteractionState(true);
+        }
     }
     private void ChangeButtonColliderInteractionState(bool state) 
     {

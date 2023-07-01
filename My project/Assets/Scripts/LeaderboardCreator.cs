@@ -6,7 +6,7 @@ public class LeaderboardCreator : MonoBehaviour
 {
     [SerializeField] private GameObject leaderboardEntryPrefab;
     [SerializeField] private RectTransform container;
-
+    [SerializeField] private LeaderboardScreen leaderboardScreen;
     private void OnEnable()
     {
         CreateLeaderboard();
@@ -17,7 +17,7 @@ public class LeaderboardCreator : MonoBehaviour
         List<LeaderboardEntry> leaderboardEntries = LeaderboardSystem.GetLeaderboard();
         if (leaderboardEntries == null || leaderboardEntries.Count == 0) 
         {
-            MainMenuEvents.Instance.LeaderboardEmpty?.Invoke();
+            leaderboardScreen.ShowNoGamesYet();
             return;
         }
 

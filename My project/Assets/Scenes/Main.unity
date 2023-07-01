@@ -2762,6 +2762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leaderboardEntryPrefab: {fileID: 3780971671372877210, guid: a1a4c3b1c0eac694a926901e9eba4467, type: 3}
   container: {fileID: 534891304}
+  leaderboardScreen: {fileID: 1990244838}
 --- !u!1 &2118093209
 GameObject:
   m_ObjectHideFlags: 0
