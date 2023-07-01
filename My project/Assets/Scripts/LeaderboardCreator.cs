@@ -7,7 +7,7 @@ public class LeaderboardCreator : MonoBehaviour
     [SerializeField] private GameObject leaderboardEntryPrefab;
     [SerializeField] private RectTransform container;
 
-    private void Start()
+    private void OnEnable()
     {
         CreateLeaderboard();
     }
