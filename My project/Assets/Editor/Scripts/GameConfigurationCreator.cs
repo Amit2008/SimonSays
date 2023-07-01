@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 using System.Xml.Serialization;
 using System;
 
+/// <summary>
+/// Editor window for creating game configurations.
+/// </summary>
 public class GameConfigurationCreator : EditorWindow
 {
     [Header("Game Configuration Parameters")]
@@ -13,7 +16,7 @@ public class GameConfigurationCreator : EditorWindow
     public float gameTime;
     public bool repeatMode;
     public float gameSpeed;
-    
+
     [Space]
     [SerializeField] private string fileName;
 
@@ -27,6 +30,7 @@ public class GameConfigurationCreator : EditorWindow
     {
         GUILayout.Label("Game Configuration Creator", EditorStyles.boldLabel);
 
+        // Display input fields for game configuration parameters
         gameButtons = EditorGUILayout.IntField("Game Buttons", gameButtons);
         pointsPerStep = EditorGUILayout.IntField("Points Per Step", pointsPerStep);
         gameTime = EditorGUILayout.FloatField("Game Time", gameTime);
@@ -36,16 +40,18 @@ public class GameConfigurationCreator : EditorWindow
 
         EditorGUILayout.Space();
 
+        // Button to create JSON configuration
         if (GUILayout.Button("Create JSON Configuration"))
         {
-            if (!ParametersValid()) 
+            if (!ParametersValid())
             {
                 Debug.LogError("Parameters not valid, GameButtons between 2-6, PointsPerStep > 0, GameTime > 0, GameSpeed >= 1, File Name must have a value");
                 return;
             }
-                CreateJSONConfiguration();
+            CreateJSONConfiguration();
         }
 
+        // Button to create XML configuration
         if (GUILayout.Button("Create XML Configuration"))
         {
             if (!ParametersValid())
@@ -53,12 +59,12 @@ public class GameConfigurationCreator : EditorWindow
                 Debug.LogError("Parameters not valid, GameButtons between 2-6, PointsPerStep > 0, GameTime > 0, GameSpeed >= 1, File Name must have a value");
                 return;
             }
-
             CreateXMLConfiguration();
         }
     }
 
-    private bool ParametersValid() 
+    // Validates the input parameters for the game configuration
+    private bool ParametersValid()
     {
         if (gameButtons < 2 || gameButtons > 6) return false;
         if (pointsPerStep <= 0) return false;
@@ -68,6 +74,7 @@ public class GameConfigurationCreator : EditorWindow
         return true;
     }
 
+    // Creates a JSON configuration file based on the input parameters
     private void CreateJSONConfiguration()
     {
         GameConfigurationData configData = new GameConfigurationData
@@ -80,7 +87,7 @@ public class GameConfigurationCreator : EditorWindow
         };
 
         string jsonData = JsonConvert.SerializeObject(configData, Formatting.Indented);
-        string filePath =  Application.persistentDataPath + $"/{fileName}.json";
+        string filePath = Application.persistentDataPath + $"/{fileName}.json";
         File.WriteAllText(filePath, jsonData);
 
         Debug.Log($"JSON Configuration created: {filePath}");
@@ -88,6 +95,7 @@ public class GameConfigurationCreator : EditorWindow
         AssetDatabase.Refresh();
     }
 
+    // Creates an XML configuration file based on the input parameters
     public void CreateXMLConfiguration()
     {
         GameConfigurationData configData = new GameConfigurationData
@@ -110,6 +118,9 @@ public class GameConfigurationCreator : EditorWindow
         AssetDatabase.Refresh();
     }
 
+    /// <summary>
+    /// Data structure representing the game configuration parameters.
+    /// </summary>
     [Serializable]
     public class GameConfigurationData
     {

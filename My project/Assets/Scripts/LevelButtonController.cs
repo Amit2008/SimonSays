@@ -12,11 +12,13 @@ public class LevelButtonController : MonoBehaviour
     {
         levelButtonView = GetComponent<LevelButtonView>();
     }
+
     private void OnEnable()
     {
         levelButtonView.LevelButtonClicked += SetLevelNameToLoad;
         MainMenuEvents.Instance.LevelNameSet += DisableInteractivity;
     }
+
     private void OnDisable()
     {
         if (MainMenuEvents.Instance == null || levelButtonView == null) return;
@@ -25,20 +27,30 @@ public class LevelButtonController : MonoBehaviour
         MainMenuEvents.Instance.LevelNameSet -= DisableInteractivity;
     }
 
-    public void SetButton(string levelName) 
+    /// <summary>
+    /// Sets the level name and updates the button's text.
+    /// </summary>
+    public void SetButton(string levelName)
     {
         this.levelName = levelName;
         levelButtonView.SetButtonText(levelName.ToUpper());
     }
 
-    private void SetLevelNameToLoad() 
+    /// <summary>
+    /// Sets the level name to load in the game system when the button is clicked.
+    /// </summary>
+    private void SetLevelNameToLoad()
     {
         GameplayHelper.FileName = levelName;
         MainMenuEvents.Instance.LevelNameSet?.Invoke();
     }
 
-    private void DisableInteractivity() 
+    /// <summary>
+    /// Disables the interaction state of the button.
+    /// </summary>
+    private void DisableInteractivity()
     {
         levelButtonView.SetInteractionState(false);
     }
 }
+

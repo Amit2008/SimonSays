@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class GameConfigurationLoader : MonoBehaviour
 {
-    [SerializeField] private bool useJSON = true;
-    [SerializeField] private string fileName;
+    [SerializeField, Tooltip("Flag indicating whether to use JSON or XML")] private bool useJSON = true;    // Flag indicating whether to use JSON or XML
+    [SerializeField] private string fileName;                                                               // Name of the configuration file
+
     private void Start()
     {
         fileName = GameplayHelper.FileName;
 
         if (string.IsNullOrEmpty(fileName)) return;
 
-        string fullUrl =  Application.persistentDataPath + "/" + fileName + (useJSON ? ".json" : ".xml");
+        string fullUrl = Application.persistentDataPath + "/" + fileName + (useJSON ? ".json" : ".xml");
+
         // Create a factory instance based on the chosen configuration type
         ConfigurationFactory factory;
 
@@ -42,6 +44,8 @@ public class GameConfigurationLoader : MonoBehaviour
         Debug.Log("Game Time: " + gameTime);
         Debug.Log("Repeat Mode: " + repeatMode);
         Debug.Log("Game Speed: " + gameSpeed);
+
+        // Invoke the event to notify that data has been loaded
         GameplayEvents.Instance.DataLoaded?.Invoke(configuration);
     }
 }

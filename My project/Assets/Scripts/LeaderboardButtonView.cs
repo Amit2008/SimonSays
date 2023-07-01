@@ -1,11 +1,19 @@
 ﻿using System;
 using UnityEngine;
 
-public class LeaderboardButtonView : MonoBehaviour 
+/// <summary>
+/// The LeaderboardButtonView class represents a UI component for the leaderboard button.
+/// </summary>
+public class LeaderboardButtonView : MonoBehaviour
 {
-    public Action LeaderBoardBUttonClicked;
-    public void OnLeaderBoardClick() 
+    public Action LeaderBoardButtonClicked;
+
+    /// <summary>
+    /// Invokes the LeaderBoardButtonClicked event when the leaderboard button is clicked.
+    /// </summary>
+    public void OnLeaderBoardClick()
     {
-        LeaderBoardBUttonClicked?.Invoke();
+        LeaderBoardButtonClicked?.Invoke();
     }
 }
+

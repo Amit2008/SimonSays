@@ -2,22 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Represents the controller for the timer functionality.
+/// </summary>
 [RequireComponent(typeof(TimerView))]
 public class TimerController : MonoBehaviour
 {
-    private TimerView timerView;
-    private float levelTime;
-    private float currentTime = 0;
-    private bool startCounting = false;
+    private TimerView timerView;    // Reference to the timer view component.
+    private float levelTime;        // The total time for the level.
+    private float currentTime = 0;  // The current time remaining.
+    private bool startCounting = false; // Flag indicating whether the timer is counting down.
+
     private void Awake()
     {
         timerView = GetComponent<TimerView>();
     }
+
     private void OnEnable()
     {
         GameplayEvents.Instance.StartButtonClicked += StartTimer;
         GameplayEvents.Instance.PlayerMadeBadSequence += StopTimer;
     }
+
     private void OnDisable()
     {
         if (GameplayEvents.Instance == null) return;
@@ -31,7 +37,8 @@ public class TimerController : MonoBehaviour
         if (currentTime > 0f && startCounting)
         {
             currentTime -= Time.deltaTime;
-            if (currentTime <= 0f) 
+
+            if (currentTime <= 0f)
             {
                 currentTime = 0f;
                 StopTimer();
@@ -42,20 +49,31 @@ public class TimerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the initial timer value for the level.
+    /// </summary>
+    /// <param name="levelTime">The total time for the level.</param>
     public void SetTimer(float levelTime)
     {
         this.levelTime = levelTime;
         timerView.UpdateTimeText(levelTime);
     }
 
-    private void StartTimer() 
+    /// <summary>
+    /// Starts the timer countdown.
+    /// </summary>
+    private void StartTimer()
     {
         startCounting = true;
         currentTime = levelTime;
     }
 
-    private void StopTimer() 
+    /// <summary>
+    /// Stops the timer countdown.
+    /// </summary>
+    private void StopTimer()
     {
         startCounting = false;
     }
 }
+

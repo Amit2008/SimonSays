@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-public class ButtonGroup : MonoBehaviour 
+/// <summary>
+/// This class representing a group of Simon Says buttons.
+/// </summary>
+public class ButtonGroup : MonoBehaviour
 {
     [SerializeField] private ButtonController[] buttonControllers;
 

@@ -11,21 +11,34 @@ public class LevelButtonView : MonoBehaviour
     public Action LevelButtonClicked;
     [SerializeField] private TextMeshProUGUI buttonText;
     private Button button;
+
     private void Awake()
     {
-        button= GetComponent<Button>();
+        button = GetComponent<Button>();
     }
-    public void OnLevelButtonClick() 
+
+    /// <summary>
+    /// Invokes the LevelButtonClicked event when the button is clicked.
+    /// </summary>
+    public void OnLevelButtonClick()
     {
         LevelButtonClicked?.Invoke();
     }
 
-    public void SetButtonText(string text) 
+    /// <summary>
+    /// Sets the text of the button.
+    /// </summary>
+    public void SetButtonText(string text)
     {
         buttonText.text = text;
     }
-    public void SetInteractionState(bool state) 
+
+    /// <summary>
+    /// Sets the interaction state of the button.
+    /// </summary>
+    public void SetInteractionState(bool state)
     {
         button.interactable = state;
     }
 }
+

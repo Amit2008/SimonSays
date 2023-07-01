@@ -2,16 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SequentialStepsPlayer : MonoBehaviour 
+/// <summary>
+/// Controls the sequential playback of steps in the game.
+/// </summary>
+public class SequentialStepsPlayer : MonoBehaviour
 {
     [SerializeField] private float delayBetweenPlays;
-    [SerializeField] private float microDelay = 0.1f; // added in case of the same button is pressed twice in a row
+    [SerializeField] private float microDelay = 0.1f; // Added in case the same button is pressed twice in a row
     private bool repeatMode = true;
+
+    /// <summary>
+    /// Subscribes to relevant events when the object is enabled.
+    /// </summary>
     private void OnEnable()
     {
         GameplayEvents.Instance.NewStepMade += PlaySteps;
         GameplayEvents.Instance.TimeFinished += StopSequence;
     }
+
+    /// <summary>
+    /// Unsubscribes from events when the object is disabled.
+    /// </summary>
     private void OnDisable()
     {
         if (GameplayEvents.Instance == null) return;
@@ -20,28 +31,45 @@ public class SequentialStepsPlayer : MonoBehaviour
         GameplayEvents.Instance.TimeFinished -= StopSequence;
     }
 
-    public void SetStepsPlayer(bool repeatMode, float gameSpeedModifier) 
+    /// <summary>
+    /// Sets the configuration for the sequential steps player.
+    /// </summary>
+    /// <param name="repeatMode">Whether the sequence should be repeated.</param>
+    /// <param name="gameSpeedModifier">The modifier for the game speed.</param>
+    public void SetStepsPlayer(bool repeatMode, float gameSpeedModifier)
     {
         this.repeatMode = repeatMode;
         delayBetweenPlays = delayBetweenPlays - ((delayBetweenPlays * gameSpeedModifier) - delayBetweenPlays);
     }
 
+    /// <summary>
+    /// Starts playing the steps in sequence.
+    /// </summary>
+    /// <param name="steps">The list of steps to play.</param>
     private void PlaySteps(List<ButtonType> steps)
     {
         StartCoroutine(PlayStepsCoroutine(steps));
     }
 
-    private void StopSequence() 
+    /// <summary>
+    /// Stops the current sequence playback.
+    /// </summary>
+    private void StopSequence()
     {
         StopCoroutine(PlayStepsCoroutine(new List<ButtonType>()));
     }
 
+    /// <summary>
+    /// Coroutine that plays the steps in sequence.
+    /// </summary>
+    /// <param name="steps">The list of steps to play.</param>
     private IEnumerator PlayStepsCoroutine(List<ButtonType> steps)
     {
         GameplayHelper.IsAutoPlay = true;
         yield return new WaitForSeconds(delayBetweenPlays);
         Debug.Log("PlayStepsCoroutine: Auto play sequence started!");
         GameplayEvents.Instance.SystemStartPlayingSteps?.Invoke();
+
         if (repeatMode)
         {
             foreach (var step in steps)
@@ -50,7 +78,7 @@ public class SequentialStepsPlayer : MonoBehaviour
                 yield return new WaitForSeconds(delayBetweenPlays + microDelay);
             }
         }
-        else 
+        else
         {
             GameplayEvents.Instance.SystemPlayedStep?.Invoke(steps[steps.Count - 1], delayBetweenPlays);
         }
@@ -60,3 +88,4 @@ public class SequentialStepsPlayer : MonoBehaviour
         GameplayHelper.IsAutoPlay = false;
     }
 }
+
